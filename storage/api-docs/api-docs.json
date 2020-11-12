@@ -1,0 +1,372 @@
+swagger: '2.0'
+info:
+ 
+  version: 1.0.0
+  title: PIM DOCS
+
+tags:
+- name: Auth
+  description: Everything about auth
+- name: Contact
+  description: Everything related with contacts
+- name: user
+  description: Operations about user
+
+# schemes:
+# - http
+paths:
+  /api/auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register as a person or org
+      operationId: register
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: user data to be enrolled on our system
+        required: true
+        schema:
+          $ref: '#/definitions/Register'
+      responses:
+        200:
+          description: token and user object
+  /api/auth/login:
+    post:
+      tags: 
+      - Auth
+      summary: Login into application
+      operationId: login
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User must give phone and password to be logged in
+        required: true
+        schema: 
+          $ref: '#/definitions/login'
+      responses:
+        200:
+          description: token and user object
+            
+  /api/auth/logout:
+    post:
+      tags: 
+      - Auth
+      summary: Logout From application
+      operationId: logout
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User will be logged out with his token
+        required: true
+        schema: 
+          $ref: '#/definitions/logout'
+      responses:
+        200:
+          description: message tell that user looged sucessfully   
+          
+  /api/contacts:
+    get:
+      tags:
+      - Contact
+      summary: Get Count Of all Contact User Have
+      operationId: contacts
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Get Count of Contact Of User
+        required: true
+        schema: 
+          $ref: '#/definitions/logout'
+      responses:
+        200:
+          description: Count
+        400:
+          description: User not Found
+   
+        
+  /api/contacts/public: 
+    get:
+      tags: 
+      - Contact
+      summary: Get All the public contacts of user
+      operationId: publicContacts
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters: 
+      - in: body
+        name: body
+        description: Get all public contacts
+        required: true
+        schema:
+          $ref: '#/definitions/contact'
+      responses:
+        200:
+          description:  data{contacts}
+  /api/contacts/private: 
+    get:
+      tags: 
+      - Contact
+      summary: Get All the private contacts of user
+      operationId: privateContacts
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters: 
+      - in: body
+        name: body
+        description: Get all private contacts
+        required: true
+        schema:
+          $ref: '#/definitions/contact'
+      responses:
+        200:
+          description:  data{contacts}  
+          
+  /api/contacts/savecontact: 
+    post:
+      tags: 
+      - Contact
+      summary: save contact 
+      operationId: SaveContact
+      consumes: 
+      - application/json
+      produces: 
+      - application/json
+      parameters: 
+      - in: body
+        name: body
+        description: save contacts with data
+        required: true
+        schema:
+          $ref: '#/definitions/savecontact'
+      responses:
+        200:
+          description:  data{contacts}   
+          
+          
+  /api/user/profile:
+    get:
+      tags:
+      - user
+      summary: get all information about user
+      operationId: profile
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Get User info
+        required: true
+        schema:
+          $ref: '#/definitions/contact'
+      responses:
+          200:
+            description: data{User Object}
+            
+            
+            
+  /api/user/updatestatus:
+    post:
+      tags:
+      - user
+      summary: update Status
+      operationId: updateStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Get User info
+        required: true
+        schema:
+          $ref: '#/definitions/changestatus'
+      responses:
+          200:
+            description: data{User Object}  
+
+
+definitions:
+
+
+ 
+
+  Register:
+    type: object
+    required:
+    - name
+    - phone
+    - type
+    - status
+    - password
+    - govern
+    properties:
+      name:
+        type: string
+        example: doggie
+      phone:
+        type: string
+        example: 01111295259
+      type:
+        type: integer
+        description: Perosnal account or organization account
+        example: 1
+        enum: 
+        - PERSONAL = 1
+        - ORGANIZATION = 2
+      status:
+        type: integer
+        description: Infected or Healing..etc
+        example: 1
+        enum:
+        - INFECTED = 1
+        - RECOVERING = 2
+        - HEALED = 3
+        - FINE = 4
+        - EXPOSED = 5
+      password: 
+        type: string
+        example: mohamed1478
+      govern: 
+        type: string
+        example: cairo
+    xml:
+      name: Auth
+      
+  login:
+    type: object
+    required:
+    - phone
+    - password
+    properties:
+       phone:
+        type: string
+        example: 01111295259
+       password: 
+        type: string
+        example: mohamed12345
+   
+  logout:
+     type: object
+     required:
+     - token
+     
+  
+  savecontact:
+    type: object
+    required:
+    - lat
+    - long
+    - privacy
+    - user_id
+    - pimmed_id
+    properties:
+      lat: 
+        type: number
+        format: float
+        example: 30.56565
+      lan: 
+        type: number
+        format: float
+        example: 31.6652
+      privcay:
+        type: number
+        example: 1
+      user_id:
+        type: integer
+        example: 1
+      pimmed_id:
+        type: integer
+        example: 2
+        
+  contact:
+    type: object
+    required:
+    - token
+    properties:
+      id: 
+       type: integer
+      name:
+        type: string
+      phone:
+        type: integer
+      govern: 
+        type: integer
+      type:
+        type: integer
+        enum: 
+        - PERSONAL = 1
+        - ORGANIZATION = 2
+      status:
+        type: integer
+        enum:
+        - INFECTED = 1
+        - RECOVERING = 2
+        - HEALED = 3
+        - FINE = 4
+        - EXPOSED = 5
+      creeated_at:
+        type: string
+      updated_at:
+        type: string
+        
+        
+        
+  changestatus:
+      type: object
+      required:
+      - token
+      - status
+      properties:
+        status: 
+          type: integer
+          enum:
+          - INFECTED = 1
+          - RECOVERING = 2
+          - HEALED = 3
+          - FINE = 4
+          - EXPOSED = 5
+      
+  ApiResponse:
+    type: object
+    properties:
+      data:
+        type: object
+      error: 
+        type: string
+      code:
+        type: integer
+        format: int32
+    
+
+# host: www.x.com
+# Added by API Auto Mocking Plugin
+# Added by API Auto Mocking Plugin
+# Added by API Auto Mocking Plugin
+
+schemes:
+ - https
+# Added by API Auto Mocking Plugin

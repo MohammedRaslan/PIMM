@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+html *{
+    font-family: 'Roboto Slab', serif;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+    background-color: #F9F9F9;
+}
+
+.row{
+    width: 100%;
+}
+
+.left{
+    height: 100vh;
+    background: transparent linear-gradient(141deg, #3B84FF 0%, #1EFFCB 100%) 0% 0% no-repeat padding-box;
+    border: 0.5px solid #1E1E1E1F;
+    opacity: 1;
+
+}
+
+.left img{
+    position: relative;
+    margin-top: 35%;
+    margin-left: 17%;
+}
+.head{
+    height: 450px;
+    justify-content: center;
+    padding: 150px;
+}
+
+.form{
+    justify-content: center;
+}
+
+.form button{
+    background-color: #3B84FF;
+}
+.logo p{
+    font-family: 'Sen', sans-serif;
+    font-size: 40px;
+    color: #3B84FF;
+ 
+}
+
+.logo{
+    justify-content: center;
+}
+
+.form-group input{
+    color: #3B84FF;
+    background-color: #D2DFF5;
+}
+
+.side{
+    padding-top: 12%;
+    position: relative;
+    left: 8px;
+}
+
+.side nav{
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 0.5px solid #0000001F;
+    opacity: 1;
+    height: 70%;
+    position: relative;
+    left: 0px;
+    gap: 56px;
+}
+
+nav i{
+    color:#BFD6FD;
+}
+
+nav i:hover{
+    color: #3B84FF;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.tabActive{
+    color:#3B84FF;
+}
+
+@media only screen and (max-width: 900px) {
+    .left {
+      display: none;
+    }
+    .form form{
+        width: 50% !important;
+    }
+    .head{
+        display: contents;
+    }
+    .contain{
+        padding-top: 74px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+  }
+/*
+.rowdata{
+    box-shadow: 1px 5px 5px 1px #0000001f;
+}
+*/
+.report:hover{
+    cursor: pointer;
+}
+
+.rotated { 
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transition: all 0.2s linear;
+}
+
+.topnav{
+    position: fixed;
+    z-index: 2;
+}
+
+.data{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 4px 4px 16px #AFAFAF26;
+border-radius: 6px;
+opacity: 1;
+}
+@media only screen and (max-width: 572px){
+    .col-6{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .topnav{
+        display: flex !important;
+        background-color: white;
+    }
+    .side{
+        display: none !important;
+    }
+    .xx{
+        justify-content: center;
+    }
+    .topnav ul li a i:hover{
+        cursor: pointer;
+        color: #3B84FF;
+    }
+}
+/*.left img{
+    width: 100%;
+    position: relative;
+    bottom: 10%;
+    right: 10%;
+}*/
